@@ -8,7 +8,7 @@ listProtos=[layer.__name__ for layer in conf.layers]
 nbPackets=int(input('Combien de paquet souhaitez-vous sniffer ?'))
 coucheASniffer=input('Quelle couche souhaitez-vous capturer ?')
 try:
-    ## Check que la réponse est correcte
+    # TP2 : Check que la réponse est correcte
     if not coucheASniffer in listProtos:
         raise ValueError
         
@@ -16,6 +16,7 @@ try:
     indexCarte=int(input('Quel est l\'index de la carte à capturer  ?'))
     packets=sniff(count=nbPackets,iface=dev_from_index(indexCarte))
     compteur=0
+     # TP3 : création d'un compteur global
     compteurTotal=0
     for packet in packets :
         compteurTotal+=1
@@ -23,6 +24,7 @@ try:
             compteur+=1
 
     print('La capture contient '+str(compteur)+' paquets du type '+coucheASniffer)
+    # TP3 : Calcul du pourcentage 
     pourcentage = (compteur/compteurTotal)*100
     print('Cela représente '+str(pourcentage)+"% des requêtes totales.")
 except ValueError as e:
